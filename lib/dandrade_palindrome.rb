@@ -1,11 +1,15 @@
 require "dandrade_palindrome/version"
 
-class String
-  class Error < StandardError; end
+module DandradePalindrome
+  # class Error < StandardError; end
 
   # Returns true for a palindrome, false otherwise.
   def palindrome?
-    processed_content == processed_content.reverse
+    if processed_content.empty?
+      false
+    else
+      processed_content == processed_content.reverse
+    end
   end
 
   # Returns the letters in the strring.
@@ -36,7 +40,15 @@ class String
   private
   # Returns content for palindrome testing.
   def processed_content
-    letter_regex = /[a-z]/i
-    scan(letter_regex).join.downcase
+    letter_regex = /[a-z0-9]/i
+    to_s.scan(letter_regex).join.downcase
   end
+end
+
+class String
+  include DandradePalindrome
+end
+
+class Integer
+  include DandradePalindrome
 end
