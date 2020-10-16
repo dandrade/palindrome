@@ -1,6 +1,15 @@
 require "dandrade_palindrome/version"
 
-module DandradePalindrome
+class String
   class Error < StandardError; end
-  # Your code goes here...
+
+  # Returns true for a palindrome, false otherwise.
+  def palindrome?
+    processed_content == processed_content.reverse
+  end
+
+  private
+  def processed_content
+    self.downcase
+  end
 end
